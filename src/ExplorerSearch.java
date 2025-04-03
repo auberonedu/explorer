@@ -32,7 +32,7 @@ public class ExplorerSearch {
         // Implement your method here!
         // Please also make more test cases
         // I STRONGLY RECOMMEND testing some helpers you might make too
-        int[][] start = startingLocation(island);
+        int[] start = startingLocation(island);
         boolean[][] visited = new boolean[island.length][island[0].length];
 
         return reachableArea(island, start, visited);
@@ -47,7 +47,13 @@ public class ExplorerSearch {
         }
 
         visited[row][col] = true;
+        int count = 1;
         
-        Link<int[]> moves = possibleMoves(island, current);
+        List<int[]> moves = possibleMoves(island, current);
+        for (int[] move : moves) {
+            count += reachableArea(island, move, visited);
+        }
+
+        return count;
     }
 }
