@@ -63,6 +63,26 @@ public class ExplorerSearch {
 
         List<int[]> moves = new ArrayList<>();
 
-        
+        // UP
+        if (row - 1 >= 0 && island[row - 1][col] != 2 && island[row - 1][col] != 3) {
+            moves.add(new int[]{row - 1, col});
+        }
+
+        // DOWN 
+        if (row + 1 < island.length && island[row + 1][col] != 2 && island[row + 1][col] != 3) {
+            moves.add(new int[]{row + 1, col});
+        }
+
+        // LEFT
+        if (col - 1 >= 0 && island[row][col - 1] != 2 && island[row][col - 1] != 3) {
+            moves.add(new int[]{row, col - 1});
+        }
+
+        // RIGHT
+        if (col + 1 < island[0].length && island[row][col + 1] != 2 && island[row][col + 1] != 3) {
+            moves.add(new int[]{row, col + 1});
+        }
+
+        return moves;
     }
 }
