@@ -37,6 +37,39 @@ public class ExplorerSearchTest {
         assertEquals(1, actual);  
     }
 
+    @Test
+    public void testStartingLocation_validStart() {
+        int[][] island = {
+            {1, 1, 1},
+            {1, 0, 1},
+            {1, 1, 1},
+        };
+        int[] expected = {1, 1};
+        assertArrayEquals(expected, ExplorerSearch.startingLocation(island));
+    }
+
+    @Test
+    public void testStartingLocation_startAtTopLeft() {
+        int[][] island = {
+            {0, 1, 1},
+            {1, 1, 1},
+            {1, 1, 1},
+        };
+        int[] expected = {0, 0};
+        assertArrayEquals(expected, ExplorerSearch.startingLocation(island));  
+    }
+
+    @Test
+    public void testStartingLocation_startAtBottomRight() {
+        int[][] island = {
+            {1, 1, 1},
+            {1, 1, 1},
+            {1, 1, 0},
+        };
+        int[] expected = {2, 2};
+        assertArrayEquals(expected, ExplorerSearch.startingLocation(island)); 
+    }
+
     // Add more tests here!
     // Come up with varied cases
 }
