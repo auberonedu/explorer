@@ -38,4 +38,14 @@ public class ExplorerSearch {
         return reachableArea(island, start, visited);
     }
     
+    public static int reachableArea(int[][] island, int[] current, boolean[][] visited) {
+        int row = current[0];
+        int col = current[1];
+
+        if (row < 0 || row >= island.length || col < 0 || col >= island[0].length || island[row][col] == 2 || island[row][col] == 3 || visited[row][col]) {
+            return 0;
+        }
+
+        
+    }
 }
