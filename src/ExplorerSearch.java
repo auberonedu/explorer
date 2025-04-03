@@ -46,6 +46,8 @@ public class ExplorerSearch {
             return 0;
         }
 
+        visited[row][col] = true;
         
+        Link<int[]> moves = possibleMoves(island, current);
     }
 }
