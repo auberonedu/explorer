@@ -56,4 +56,13 @@ public class ExplorerSearch {
 
         return count;
     }
+
+    public static List<int[]> possibleMoves(int[][] island, int[] current) {
+        int row = current[0];
+        int col = current[1];
+
+        List<int[]> moves = new ArrayList<>();
+
+        
+    }
 }
