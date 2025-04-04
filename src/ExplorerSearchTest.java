@@ -75,6 +75,19 @@ public class ExplorerSearchTest {
     }
 
     @Test
+    public void testStartingLocation_notFound_throwsException() {
+        int[][] island = {
+            {1, 1, 1},
+            {1, 1, 1},
+            {1, 1, 1}
+        };
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            ExplorerSearch.startingLocation(island);
+        });
+        assertEquals("No starting position present", exception.getMessage());
+    }
+
+    @Test
     public void testPossibleMoves_allDirectionsOpen() {
         int[][] island = {
             {0, 1, 1},
@@ -100,6 +113,15 @@ public class ExplorerSearchTest {
         assertTrue(right);
     }
     
-    // Add more tests here!
-    // Come up with varied cases
+    @Test
+    public void testPossibleMoves_allDirectionsBlocked() {
+        int[][] island = {
+        {3, 3, 3},
+        {3, 0, 3},
+        {3, 3, 3},
+        };
+        int[] location = {1, 1};
+        List<int[]> moves = ExplorerSearch.possibleMoves(island, location);
+        assertTrue(moves.isEmpty());
+    }
 }

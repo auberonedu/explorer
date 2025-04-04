@@ -29,9 +29,6 @@ public class ExplorerSearch {
      * @return the number of spaces the explorer can reach
      */
     public static int reachableArea(int[][] island) {
-        // Implement your method here!
-        // Please also make more test cases
-        // I STRONGLY RECOMMEND testing some helpers you might make too
         int[] start = startingLocation(island);
         boolean[][] visited = new boolean[island.length][island[0].length];
 
