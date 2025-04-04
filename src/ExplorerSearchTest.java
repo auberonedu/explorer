@@ -1,4 +1,8 @@
 import static org.junit.Assert.*;
+
+import java.util.List;
+import java.util.Set;
+
 import org.junit.Test;
 
 public class ExplorerSearchTest {
@@ -70,6 +74,32 @@ public class ExplorerSearchTest {
         assertArrayEquals(expected, ExplorerSearch.startingLocation(island)); 
     }
 
+    @Test
+    public void testPossibleMoves_allDirectionsOpen() {
+        int[][] island = {
+            {0, 1, 1},
+            {1, 0, 1},
+            {1, 1, 1},
+        };
+        int[] location = {1, 1};
+        List<int[]> moves = ExplorerSearch.possibleMoves(island, location);
+
+        assertEquals(4, moves.size());
+
+        boolean up = false, down = false, left = false, right = false;
+        for (int[] move : moves) {
+            if (move[0] == 0 && move[1] == 1) up = true;
+            if (move[0] == 2 && move[1] == 1) down = true;
+            if (move[0] == 1 && move[1] == 0) left = true;
+            if (move[0] == 1 && move[1] == 2) right = true;
+        }
+
+        assertTrue(up);
+        assertTrue(down);
+        assertTrue(left);
+        assertTrue(right);
+    }
+    
     // Add more tests here!
     // Come up with varied cases
 }
