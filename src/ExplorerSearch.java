@@ -34,4 +34,44 @@ public class ExplorerSearch {
         // I STRONGLY RECOMMEND testing some helpers you might make too
         return -1;
     }
+
+    /**
+     * Finds indices of the space the explorer is starting from
+     * represented as 0
+     * 
+     * throws IllegalArgumentException if no starting point is found
+     * 
+     * @param island locations on the island
+     * @return array of indices ([0] = row, [1] = column) where explorer is starting 
+     */
+    public static int[] findStart(int[][] island){
+        // for each array element, if element = 0, return indices
+
+        // if there was no return in for loop, throw exception
+        return new int[]{};
+    }
+
+    /**
+     * Finds any field spaces that are directly accessible from the given starting point (current)
+     * 
+     * @param island locations on the island
+     * @param current starting location
+     * @return List of indices where the explorer can move to (field spaces)
+     */
+    public static List<int[]> nearbyFields(int[][] island, int[] current){
+        // create variables for current row and column
+
+        // check above curr
+
+        // check below curr
+
+        // check left
+
+        // check right
+
+
+        return new ArrayList<>();
+    }
+
+
 }
