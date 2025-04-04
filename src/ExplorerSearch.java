@@ -64,19 +64,49 @@ public class ExplorerSearch {
      * @return List of indices where the explorer can move to (field spaces)
      */
     public static List<int[]> nearbyFields(int[][] island, int[] current){
+        // create list to be returned
+        List<int[]> spaces = new ArrayList<>();
         // create variables for current row and column
+        int rCurr = current[0];
+        int cCurr = current[1];
 
         // check above curr
+        int r = rCurr -1;
+        int c = cCurr;
+        if (r >= 0){
+            if (island[r][c] != 2 && island[r][c] != 3){
+                spaces.add(new int[]{r, c});
+            }
+        }
 
         // check below curr
+        r = rCurr + 1;
+        c = cCurr;
+        if ( r < island.length){
+            if (island[r][c] != 2 && island[r][c] != 3){
+                spaces.add(new int[]{r, c});
+            }
+        } 
 
         // check left
+        r = rCurr;
+        c = cCurr -1;
+        if ( c >= 0){
+            if (island[r][c] != 2 && island[r][c] != 3){
+                spaces.add(new int[]{r, c});
+            }
+        }     
 
         // check right
+        r = rCurr;
+        c = cCurr + 1;
+        if ( c < island[0].length){
+            if (island[r][c] != 2 && island[r][c] != 3){
+                spaces.add(new int[]{r, c});
+            }
+        }
 
-
-        return new ArrayList<>();
+        return spaces;
     }
-
 
 }
