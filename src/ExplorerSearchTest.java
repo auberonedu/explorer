@@ -96,7 +96,7 @@ public class ExplorerSearchTest {
             {3,2,3,2,1,0},
         };
         int actual = ExplorerSearch.reachableArea(island);
-        assertEquals(1, actual);
+        assertEquals(10, actual);
     }
 
     @Test
