@@ -1,7 +1,9 @@
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -105,11 +107,11 @@ public class ExplorerSearchTest {
             {1,1,1,2,1,1},
         };
         List<int[]> actual = ExplorerSearch.nearbyFields(island, new int[]{2, 3});
-        List<int[]> expected = new ArrayList<>();
-        expected.add(new int[]{1, 3});
-        expected.add(new int[]{3, 3});
-        expected.add(new int[]{2, 2});
-        assertEquals(expected.toString(), actual.toString());
+        Set<String> actualSet = toSet(actual);
+        assertEquals(3, actual.size());
+        assertTrue(actualSet.contains("1, 3"));
+        assertTrue(actualSet.contains("3, 3"));
+        assertTrue(actualSet.contains("2, 2"));
     }
 
     @Test
@@ -122,9 +124,9 @@ public class ExplorerSearchTest {
             {1,1,1,2,1,1},
         };
         List<int[]> actual = ExplorerSearch.nearbyFields(island, new int[]{0, 0});
-        List<int[]> expected = new ArrayList<>();
-        expected.add(new int[]{0, 1});
-        assertEquals(expected.toString(), actual.toString());
+        Set<String> actualSet = toSet(actual);
+        assertEquals(1, actual.size());
+        assertTrue(actualSet.contains("0, 1"));
     }
 
     @Test
@@ -137,9 +139,9 @@ public class ExplorerSearchTest {
             {1,1,1,2,1,1},
         };
         List<int[]> actual = ExplorerSearch.nearbyFields(island, new int[]{3, 5});
-        List<int[]> expected = new ArrayList<>();
-        expected.add(new int[]{4, 5});
-        assertEquals(expected.toString(), actual.toString());
+        Set<String> actualSet = toSet(actual);
+        assertEquals(1, actual.size());
+        assertTrue(actualSet.contains("4, 5"));
     }
 
     @Test
@@ -152,11 +154,11 @@ public class ExplorerSearchTest {
             {1,1,1,2,1,1},
         };
         List<int[]> actual = ExplorerSearch.nearbyFields(island, new int[]{4, 1});
-        List<int[]> expected = new ArrayList<>();
-        expected.add(new int[]{4, 0});
-        expected.add(new int[]{4, 2});
-        expected.add(new int[]{3, 1});
-        assertEquals(expected.toString(), actual.toString());
+        Set<String> actualSet = toSet(actual);
+        assertEquals(3, actual.size());
+        assertTrue(actualSet.contains("4, 0"));
+        assertTrue(actualSet.contains("4, 2"));
+        assertTrue(actualSet.contains("3, 1"));
     }
 
     @Test
@@ -183,12 +185,20 @@ public class ExplorerSearchTest {
             {1,1,1,1,1,1},
         };
         List<int[]> actual = ExplorerSearch.nearbyFields(island, new int[]{3, 3});
-        List<int[]> expected = new ArrayList<>();
-        expected.add(new int[]{4, 3});
-        expected.add(new int[]{2, 3});
-        expected.add(new int[]{3, 4});
-        expected.add(new int[]{3, 2});
-        assertEquals(expected.toString(), actual.toString());
+        Set<String> actualSet = toSet(actual);
+        assertEquals(4, actual.size());
+        assertTrue(actualSet.contains("4, 3"));
+        assertTrue(actualSet.contains("2, 3"));
+        assertTrue(actualSet.contains("3, 4"));
+        assertTrue(actualSet.contains("3, 2"));
+    }
+
+    private Set<String> toSet(List<int[]> li){
+        Set<String> indexSet = new HashSet<>();
+        for (int[] arr : li){
+            indexSet.add(arr[0] + ", " + arr[1]);
+        }
+        return indexSet;
     }
 
 }
