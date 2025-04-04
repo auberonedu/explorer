@@ -46,9 +46,14 @@ public class ExplorerSearch {
      */
     public static int[] findStart(int[][] island){
         // for each array element, if element = 0, return indices
+        for(int r = 0; r < island.length; r++){
+            for (int c=0; c < island[0].length; c++){
+                if (island[r][c] == 0) return new int[]{r, c};
+            }
+        }
 
         // if there was no return in for loop, throw exception
-        return new int[]{};
+        throw new IllegalArgumentException("Island must have a starting location");
     }
 
     /**
