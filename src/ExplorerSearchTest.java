@@ -34,7 +34,7 @@ public class ExplorerSearchTest {
         };
         int[] actual = ExplorerSearch.findStart(island);
         int[] expected = new int[]{2, 3};
-        assertEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class ExplorerSearchTest {
         };
         int[] actual = ExplorerSearch.findStart(island);
         int[] expected = new int[]{0, 0};
-        assertEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -62,7 +62,7 @@ public class ExplorerSearchTest {
         };
         int[] actual = ExplorerSearch.findStart(island);
         int[] expected = new int[]{4, 5};
-        assertEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class ExplorerSearchTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             ExplorerSearch.findStart(island);
         });
-        assertEquals("Island must have starting location", exception.getMessage());
+        assertEquals("Island must have a starting location", exception.getMessage());
     }
 
     @Test
@@ -89,7 +89,7 @@ public class ExplorerSearchTest {
         };
         int[] actual = ExplorerSearch.findStart(island);
         int[] expected = new int[]{2, 1};
-        assertEquals(expected, actual);
+        assertArrayEquals(expected, actual);
     }
 
 
@@ -109,7 +109,7 @@ public class ExplorerSearchTest {
         expected.add(new int[]{1, 3});
         expected.add(new int[]{3, 3});
         expected.add(new int[]{2, 2});
-        assertEquals(expected, actual);
+        assertEquals(expected.toString(), actual.toString());
     }
 
     @Test
@@ -124,7 +124,7 @@ public class ExplorerSearchTest {
         List<int[]> actual = ExplorerSearch.nearbyFields(island, new int[]{0, 0});
         List<int[]> expected = new ArrayList<>();
         expected.add(new int[]{0, 1});
-        assertEquals(expected, actual);
+        assertEquals(expected.toString(), actual.toString());
     }
 
     @Test
@@ -139,7 +139,7 @@ public class ExplorerSearchTest {
         List<int[]> actual = ExplorerSearch.nearbyFields(island, new int[]{3, 5});
         List<int[]> expected = new ArrayList<>();
         expected.add(new int[]{4, 5});
-        assertEquals(expected, actual);
+        assertEquals(expected.toString(), actual.toString());
     }
 
     @Test
@@ -156,7 +156,7 @@ public class ExplorerSearchTest {
         expected.add(new int[]{4, 0});
         expected.add(new int[]{4, 2});
         expected.add(new int[]{3, 1});
-        assertEquals(expected, actual);
+        assertEquals(expected.toString(), actual.toString());
     }
 
     @Test
@@ -188,7 +188,7 @@ public class ExplorerSearchTest {
         expected.add(new int[]{2, 3});
         expected.add(new int[]{3, 4});
         expected.add(new int[]{3, 2});
-        assertEquals(expected, actual);
+        assertEquals(expected.toString(), actual.toString());
     }
 
 }
