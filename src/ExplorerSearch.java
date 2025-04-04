@@ -29,9 +29,80 @@ public class ExplorerSearch {
      * @return the number of spaces the explorer can reach
      */
     public static int reachableArea(int[][] island) {
-        // Implement your method here!
-        // Please also make more test cases
-        // I STRONGLY RECOMMEND testing some helpers you might make too
-        return -1;
+        int[] start = startPoint(island);
+        boolean[][] visited = new boolean[island.length][island[0].length];
+
+        return reachableArea(island, start, visited);
+    }
+
+    public static int reachableArea(int[][] island, int[] current, boolean[][] visited) {
+        int curR = current[0];
+        int curC = current[1];
+
+        // base cases: if out of bounds or visited or water/mountain
+        if (curR < 0 || curR >= island.length || curC < 0 || curC >= island[0].length)
+            return 0;
+        if (visited[curR][curC] || island[curR][curC] == 2 || island[curR][curC] == 3)
+            return 0;
+
+        visited[curR][curC] = true;
+
+        // count current spot
+        int count = 1;
+
+        List<int[]> moves = possibleMoves(island, current);
+        for (int[] move : moves) {
+            count += reachableArea(island, move, visited);
+        }
+        return count;
+    }
+
+    public static int[] startPoint(int[][] island) {
+        // base case if array null auto produces NPE
+
+        for (int r = 0; r < island.length; r++) {
+            for (int c = 0; c < island[0].length; c++) {
+                if (island[r][c] == 0) {
+                    return new int[] { r, c };
+                }
+            }
+        }
+        throw new IllegalArgumentException("No explorer present");
+    }
+
+    public static List<int[]> possibleMoves(int[][] island, int[] current) {
+        int curR = current[0];
+        int curC = current[1];
+
+        List<int[]> moves = new ArrayList<>();
+
+        // UP
+        int newR = curR - 1;
+        int newC = curC;
+        if (newR >= 0 && (island[newR][newC] == 0 || island[newR][newC] == 1)) {
+            moves.add(new int[] { newR, newC });
+        }
+
+        // DOWN
+        newR = curR + 1;
+        newC = curC;
+        if (newR < island.length && (island[newR][newC] == 0 || island[newR][newC] == 1)) {
+            moves.add(new int[] { newR, newC });
+        }
+
+        // LEFT
+        newR = curR;
+        newC = curC - 1;
+        if (newC >= 0 && (island[newR][newC] == 0 || island[newR][newC] == 1)) {
+            moves.add(new int[] { newR, newC });
+        }
+
+        // RIGHT
+        newR = curR;
+        newC = curC + 1;
+        if (newC < island[0].length && (island[newR][newC] == 0 || island[newR][newC] == 1)) {
+            moves.add(new int[] { newR, newC });
+        }
+        return moves;
     }
 }
