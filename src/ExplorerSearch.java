@@ -29,10 +29,25 @@ public class ExplorerSearch {
      * @return the number of spaces the explorer can reach
      */
     public static int reachableArea(int[][] island) {
-        // Implement your method here!
-        // Please also make more test cases
-        // I STRONGLY RECOMMEND testing some helpers you might make too
-        return -1;
+        boolean[][] visited = new boolean[island.length][island[0].length];
+        int[] current = findStart(island);
+
+        return reachableArea(island, visited, current, 0);
+    }
+
+    public static int reachableArea(int[][] island, boolean[][] visited, int[] current, int spaces){
+        int row = current[0];
+        int column = current[1];
+        if (visited[row][column]) return 0;
+
+        visited[row][column] = true;
+
+        spaces++;
+
+        for (int[] field : nearbyFields(island, current)){
+            spaces = Math.max(reachableArea(island, visited, field, spaces), spaces);
+        }
+        return spaces;
     }
 
     /**
