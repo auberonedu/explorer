@@ -21,6 +21,103 @@ public class ExplorerSearchTest {
         assertEquals(14, actual);
     }
 
+    @Test
+    public void testReachableArea_allReachable() {
+        int[][] island = {
+            {1,1,1,1,1,1},
+            {1,1,1,1,1,1},
+            {1,1,1,1,1,1},
+            {1,1,1,1,0,1},
+            {1,1,1,1,1,1},
+        };
+        int actual = ExplorerSearch.reachableArea(island);
+        assertEquals(30, actual);
+    }
+
+    @Test
+    public void testReachableArea_surroundedWater() {
+        int[][] island = {
+            {1,1,1,1,1,1},
+            {1,1,1,1,1,1},
+            {1,1,1,1,2,1},
+            {1,1,1,2,0,2},
+            {1,1,1,1,2,1},
+        };
+        int actual = ExplorerSearch.reachableArea(island);
+        assertEquals(1, actual);
+    }
+
+    @Test
+    public void testReachableArea_surroundedMountain() {
+        int[][] island = {
+            {1,1,1,1,1,1},
+            {1,1,1,1,1,1},
+            {1,1,1,1,3,1},
+            {1,1,1,3,0,3},
+            {1,1,1,1,3,1},
+        };
+        int actual = ExplorerSearch.reachableArea(island);
+        assertEquals(1, actual);
+    }
+
+    @Test
+    public void testReachableArea_cycleable() {
+        int[][] island = {
+            {1,1,1,1,1,1},
+            {1,2,2,3,3,1},
+            {1,2,2,3,3,1},
+            {1,3,2,2,2,1},
+            {1,1,1,1,1,0},
+        };
+        int actual = ExplorerSearch.reachableArea(island);
+        assertEquals(18, actual);
+    }
+
+    @Test
+    public void testReachableArea_noFields() {
+        int[][] island = {
+            {2,2,2,2,3,2},
+            {2,2,2,3,3,3},
+            {3,2,0,3,3,2},
+            {3,3,2,2,2,3},
+            {3,2,3,2,2,2},
+        };
+        int actual = ExplorerSearch.reachableArea(island);
+        assertEquals(1, actual);
+    }
+
+    @Test
+    public void testReachableArea_cornerToCorner() {
+        int[][] island = {
+            {1,1,2,2,3,2},
+            {2,1,1,3,3,3},
+            {3,2,1,1,1,2},
+            {3,3,2,2,1,3},
+            {3,2,3,2,1,0},
+        };
+        int actual = ExplorerSearch.reachableArea(island);
+        assertEquals(1, actual);
+    }
+
+    @Test
+    public void testReachableArea_smallIsland() {
+        int[][] island = {
+            {2,1,1},
+            {1,0,1},
+            {1,1,1}
+        };
+        int actual = ExplorerSearch.reachableArea(island);
+        assertEquals(8, actual);
+    }
+
+    @Test
+    public void testReachableArea_onlyStartingSpace() {
+        int[][] island = {
+            {0}
+        };
+        int actual = ExplorerSearch.reachableArea(island);
+        assertEquals(1, actual);
+    }
     // Add more tests here!
     // Come up with varied cases
 
