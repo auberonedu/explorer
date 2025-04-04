@@ -46,4 +46,42 @@ public class ExplorerSearchTest {
         int actual = ExplorerSearch.reachableArea(island);
         assertEquals(13, actual);
     }
+
+    // unit testing startPoint - explorer notFound
+    @Test
+    public void testStartPoint_notFound() {
+        int[][] island = {
+                { 1, 1, 1 },
+                { 1, 1, 1 },
+                { 1, 1, 1 }
+        };
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            ExplorerSearch.startPoint(island);
+        });
+        assertEquals("No explorer present", exception.getMessage());
+    }
+
+    // startPoint top left corner
+    @Test
+    public void testStartPoint_topLeftCorner() {
+        int[][] island = {
+                { 0, 1, 1 },
+                { 1, 1, 1 },
+                { 1, 1, 1 }
+        };
+        int[] expected = { 0, 0 };
+        assertArrayEquals(expected, ExplorerSearch.startPoint(island));
+    }
+
+    // startPoint dead center
+    @Test
+    public void testStartPoint_deadCenter() {
+        int[][] island = {
+                { 1, 1, 1 },
+                { 1, 0, 1 },
+                { 1, 1, 1 }
+        };
+        int[] expected = { 1, 1 };
+        assertArrayEquals(expected, ExplorerSearch.startPoint(island));
+    }
 }
